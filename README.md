@@ -32,7 +32,7 @@ That is the first important habit: treat it as a conversation, not a command lin
 
 More context is usually better, but only when it is relevant. A giant context window does not excuse dumping in everything you own. The goal is to increase the average relevance of the tokens the model sees. A short, accurate project summary can be more valuable than hundreds of pages of undifferentiated history.
 
-This is why good agentic systems eventually develop context artifacts: a project overview, a glossary, a record of decisions, a current-status note, a set of executable issues, and reference documents describing how the finished system actually works. Those files let a fresh agent reconstruct the right mental model without rereading the history of civilization.
+This is why good agentic systems eventually develop context artifacts: a project overview, a glossary, a record of decisions, a set of executable issues, and reference documents describing how the finished system actually works. Those files let a fresh agent reconstruct the right mental model without rereading the history of civilization.
 
 ## 3. Models, tools, harnesses, and agents
 
@@ -100,7 +100,7 @@ Most people begin by treating an AI as a consultant and focusing on one chat at 
 
 The answer is to orient the work around durable artifacts - literally files. The agents are transient; the state is preserved.
 
-Coding environments arrived at this model early because software already lives in project folders. Every agent works within a defined set of files, with explicit permission required to reach beyond it. But the pattern is not limited to code. A project can contain research notes, presentations, interview transcripts, plans, decisions, financial models, and a current-status file.
+Coding environments arrived at this model early because software already lives in project folders. Every agent works within a defined set of files, with explicit permission required to reach beyond it. But the pattern is not limited to code. A project can contain research notes, presentations, interview transcripts, plans, decisions, and financial models.
 
 The core mental shift is this:
 
@@ -111,7 +111,6 @@ A minimal project folder might contain:
 ```text
 project-name/
   README.md        # What this is and how to begin
-  STATUS.md        # Current state, next steps, and open questions
   AGENTS.md        # How agents should work in this project
   docs/
     context.md     # Domain language and shared mental model
@@ -119,7 +118,7 @@ project-name/
     reference/     # How the current, finished system works
 ```
 
-Do not create this entire structure because a guide told you to. Start with the folder and a useful `STATUS.md`. Add the other documents as the project becomes large enough to feel the problem each one solves.
+Do not create this entire structure because a guide told you to. Start with the folder. Add documents as the project becomes large enough to feel the problem each one solves.
 
 ## 8. Global and project agent instructions
 
@@ -135,7 +134,7 @@ Keep the global file reasonably terse. It enters a huge number of conversations,
 
 For a concrete example, here is the [`AGENTS.md` from my PXLBLZ-IDE project](https://github.com/jon-whiteroomsoftware/PXLBLZ-IDE/blob/main/AGENTS.md). It shows how process, architecture, testing, documentation, and tool guidance can accumulate in a substantial repository. Do not copy it wholesale. Use it as an example of what can belong there, then keep only the parts your project actually needs.
 
-Project instructions should explain how to work in the repository, not try to become the entire repository. Current status belongs in `STATUS.md` or issues. Domain concepts belong in a context document. Future decisions belong in plans. Finished behavior belongs in reference documentation. `AGENTS.md` points agents toward those sources and states the rules for using them.
+Project instructions should explain how to work in the repository, not try to become the entire repository. Current work belongs in issues. Domain concepts belong in a context document. Future decisions belong in plans. Finished behavior belongs in reference documentation. `AGENTS.md` points agents toward those sources and states the rules for using them.
 
 Teach the agent who you are early and in writing, but put each fact at the right level. A stable personal preference belongs globally. The audience, tone, constraints, and working conventions of one business or product belong in its project instructions. Every durable fact written down once is a fact that does not have to be reconstructed from hazy memory later. Agents compound like employees do, but only if you onboard them.
 
@@ -271,43 +270,7 @@ One useful high-stakes pattern is to let the model produce the first analysis, i
 
 AI slop is not an unavoidable property of AI output. It is usually the visible result of insufficient judgment and editing. Writing from scratch is difficult; editing is much easier. Generate alternatives, select the good material, remove the generic filler, and verify the facts. The good outcomes are often invisible because they simply look like competent work.
 
-## 16. A first-week curriculum
-
-The point of the first week is to form a working habit, not to install every fashionable tool.
-
-### Day 1: Form the mental model
-
-Learn the difference between the model, context window, tools, harness, and agent. Watch the Karpathy introduction if you want the mechanism. Then have a long conversation about a subject you know well enough to judge.
-
-Ask the model to explain your own position back to you, identify what it may have misunderstood, and ask follow-up questions. Notice how much the second and third turns improve on the first.
-
-### Day 2: Narrate the groan
-
-Use voice input if possible. During normal work, catch one annoying task before you do it manually. Explain the context and desired outcome to the agent. Let it propose the approach before acting.
-
-### Day 3: Make the folder the workspace
-
-Choose one ongoing project. Create a folder and a `STATUS.md`. Ask the agent to interview you, summarize the project, and maintain the status file as you work. Add a short `AGENTS.md` when useful repository-specific preferences emerge; keep current status and project knowledge in the documents that own them.
-
-### Day 4: Generate options
-
-Pick a real artifact: a small internal tool, a proposal, a workflow, or an interface. Ask for three materially different approaches. Have the agent explain the trade-offs, then choose or synthesize a fourth.
-
-### Day 5: Add Git and GitHub
-
-Ask the agent to initialize the project and create a private GitHub repository. Learn commit, diff, branch, revert, and pull request conceptually. Let the agent handle the commands. Make one deliberate checkpoint and inspect its diff.
-
-### Day 6: Build a vertical slice
-
-Choose the smallest end-to-end piece that somebody can actually use. Define the behavior, write a test when applicable, implement it, run it, and preserve the result in Git. Do not spend the day polishing a disconnected foundation.
-
-### Day 7: Teach the system what you learned
-
-Review the week's conversations and artifacts. Ask the agent what repeated instructions should become project guidance, which decisions need preserving, what documentation is stale, and what the next small shippable increment should be.
-
-At the end of the week, the victory is not that you understand every feature. It is that you have one durable project, one useful result, a reviewable history, and a better instinct for what can be delegated.
-
-## 17. July 2026 setup notes
+## 16. July 2026 setup notes
 
 These recommendations are a dated snapshot, not eternal truth. Product interfaces and model rankings are moving too quickly for anything else.
 
