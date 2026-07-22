@@ -197,6 +197,11 @@ For strategic conversations full of unknowns, preserve optionality. Do not prema
 
 ## 11. A durable software workflow
 
+If you don't already have a basic process, my standard recommendation is [Matt Pocock's skills](https://github.com/mattpocock/skills):
+
+- **Product definition:** `/grill_me`, `/to_prd`, and `/to_issues` get a lot of use. They still do.
+- **Development:** `/tdd` and `/improve-codebase-architecture`.
+
 For substantial software, the workflow I have converged on is:
 
 1. **Establish the domain model.** Define the important concepts, boundaries, and shared vocabulary in a context document.
@@ -214,7 +219,9 @@ This is why a documentation sweep is part of completing a feature rather than a 
 
 ## 12. Tests are rails for the agent
 
-Test-driven development is not mainly about you reading a giant pile of tests. It is about giving the agent a machine-checkable definition of behavior.
+The `/tdd` skill alone is worth adding to your process. It takes almost no time to set up, but brings a lot of value: the agent writes tests as it develops, and those tests become a growing safety net around the codebase. Even if you rarely read or write them yourself, they will catch a surprising number of regressions before those regressions spread.
+
+Tests are not magic or entirely self-validating. An agent can write a weak test or engage in test gaming - changing the test to make the code pass instead of fixing the code - so important behavior still deserves some human validation and a few controls against weakening the suite. Start with the easy win. The sophistication can come as the project earns it.
 
 Good bones start with the important domain decisions. Prototype enough to settle the core objects and processes, then put tests around them early. When a later change breaks one of those assumptions, the failure is immediate and local. The agent can inspect the failing test, correct course, and try again.
 
