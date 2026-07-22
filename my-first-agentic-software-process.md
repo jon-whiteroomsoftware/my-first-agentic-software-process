@@ -279,12 +279,13 @@ But that's just, like, my opinion, man.
 
 ---
 
-## My current tooling and process (as of July 22, 2026)
+## My current tooling and process (July 2026)
 
-A snapshot, mostly so my friends can ask me pointed questions about it. This section will go stale first.
+This section will go stale first.
 
 - **Subscriptions:** OpenAI $200/month, Anthropic $100–200/month, MorphLLM WarpGrep pay-as-you-go (~$20 cap). The pair costs less than a gym membership and does the work of a small team.
-- **Model tiering:** Sol High Fast for feature definition, UX design, project planning, and task scheduling (Fast because it's interactive work — I'm worth it); Terra Extra High for most implementation, including having the implementation agent update the plans and reference docs for its own work. Fable stays in the rotation for design, planning, and review — I get unique, valuable insights from both frontier models, and cross-model review is a load-bearing part of my validation.
+- **Models:** This is as much about principles now as about specific models: use a fast model for the work you sit with, the smartest model for definition and planning, and a cheaper-but-clever model for implementation. My current instantiation: Sol High Fast for feature definition, UX design, project planning, and task scheduling (Fast because it's interactive work — I'm worth it); Terra Extra High for most implementation, including having the implementation agent update the plans and reference docs for its own work. Fable and GPT 5.6 are more similar than they are different, and I've become much less choosy about who does what — I'll use either happily for coding, design, and technical tasks. The one exception is written prose: GPT writes well, but Fable writes exceptionally well. To me there's a noticeable gap, and it's one of the few places I can still see clear daylight between them.
+- **Cross-model validation:** The bigger shift in my process is using both models on the same task, one as creator and one as reviewer — I get unique, valuable insights from each. Ad hoc, it's one sentence: "Ask a new Fable High agent to review this document and then summarize the results." For the most important decisions, my `/dual_model_design` skill has both agents iteratively generate outputs and review each other's work. And Fable is set up to review every commit GPT creates.
 - **Harnesses:** Codex as the daily driver (Steer input mode, end-of-turn bell); Claude Code IDE alongside. One-time config so both see the same instructions and skills.
 - **Input:** Superwhisper for essentially all text, with a post-processing model cleaning the transcript.
 - **Process skills:** Matt Pocock's set (`/grill_me`, `/to_prd`, `/to_issues`, `/tdd`, `/improve-codebase-architecture`) plus my own four: `doc-sweep`, `blind-spot-check`, `dual-model-design` (the Claude-vs-GPT bake-off), and `personal-voice`.
@@ -296,8 +297,6 @@ A snapshot, mostly so my friends can ask me pointed questions about it. This sec
 ---
 
 ## Glossary
-
-Only the terms you need a hook for before their section arrives. Everything here is explained properly somewhere above.
 
 - **Agent** — an LLM with hands: it can read/write files, run commands, browse, and act, not just answer.
 - **Harness** — the application wrapped around the model (Claude Code, Codex). Same brain, different body; a lot of your experience is the harness.
