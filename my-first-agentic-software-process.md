@@ -1,4 +1,6 @@
-# Agentic Coding: A Practical On-Ramp
+# My First Agentic Software Process
+
+*A compact guide to building reliable software with agents*
 
 *By Jon Chester | Last updated July 21st, 2026*
 
@@ -117,11 +119,39 @@ project-name/
     reference/     # How the current, finished system works
 ```
 
-Do not create this entire structure because a guide told you to. Start with the folder and a useful `STATUS.md`. Add a project instruction file when you notice yourself repeating preferences. Add a context document when terminology or boundaries become confusing. Add plans, issues, and reference material as the project becomes large enough to need them.
+Do not create this entire structure because a guide told you to. Start with the folder and a useful `STATUS.md`. Add the other documents as the project becomes large enough to feel the problem each one solves.
 
-Teach the agent who you are early and in writing. A project instruction file can describe the business, audience, preferred tone, constraints, and working conventions. Every durable fact written down once is a fact that does not have to be reconstructed from a hazy memory later. Agents compound like employees do, but only if you onboard them.
+## 8. Global and project agent instructions
 
-## 8. Git is durable state with time travel
+Agent instruction files are durable context that the harness loads automatically. They save you from repeating how you want the agent to work, but they come in two different scopes that should not be muddled together.
+
+**Global instructions follow you from project to project.** My Codex defaults live at `~/.codex/AGENTS.md`, outside any Git repository. That file contains the stable preferences I want applied nearly everywhere: where repositories live, how files are named, when agents need permission, how subagents and token budgets should be handled, how Git operations should be approached, and practical details such as where to look when I mention a screenshot.
+
+Global instructions are also a good home for broad product and engineering process defaults. Mine describes preferences such as test-driven development, small vertical slices, keeping framework code separate from business logic, and maintaining current reference documentation. Those are not facts about one product; they are the way I generally want to work.
+
+Keep the global file reasonably terse. It enters a huge number of conversations, so every paragraph should earn its place. A preference that applies to only one repository belongs in that repository. A correction or working rule that keeps recurring across unrelated projects may deserve promotion to the global file.
+
+**Project instructions live inside the repository.** A project's `AGENTS.md` describes what is special about that project: its purpose, domain language, architecture, technology choices, setup commands, issue tracker, documentation layout, local development URL, testing expectations, and any strange hardware or deployment constraints. Because the file is committed, every human and agent working in that repository receives the same guidance.
+
+Project instructions should explain how to work in the repository, not try to become the entire repository. Current status belongs in `STATUS.md` or issues. Domain concepts belong in a context document. Future decisions belong in plans. Finished behavior belongs in reference documentation. `AGENTS.md` points agents toward those sources and states the rules for using them.
+
+Teach the agent who you are early and in writing, but put each fact at the right level. A stable personal preference belongs globally. The audience, tone, constraints, and working conventions of one business or product belong in its project instructions. Every durable fact written down once is a fact that does not have to be reconstructed from hazy memory later. Agents compound like employees do, but only if you onboard them.
+
+### AGENTS.md versus CLAUDE.md
+
+Use `AGENTS.md` as the canonical shared instruction file for a repository. When creating a new project, create `AGENTS.md` first. If Codex and Claude should receive the same project guidance, make `CLAUDE.md` a symbolic link to `AGENTS.md`:
+
+```text
+project-name/
+  AGENTS.md
+  CLAUDE.md -> AGENTS.md
+```
+
+That gives both tools the same source of truth without maintaining two copies that will quietly drift apart. If Claude genuinely needs different instructions, keep a separate `CLAUDE.md`, but make it small and clearly limited to Claude-specific behavior. The same idea applies globally: a global Claude instruction file should contain only the defaults Claude needs, not a stale duplicate of the entire Codex file.
+
+This arrangement is not sacred ceremony. It is just the least lossy setup: one shared file for shared guidance, small tool-specific files for real differences, and project knowledge in the documents that actually own it.
+
+## 9. Git is durable state with time travel
 
 Git has a reputation for being tedious and Byzantine. Fair. Fortunately, you no longer need to become a command-line Git enthusiast to benefit from it. The agent can operate Git; you need the conceptual vocabulary.
 
@@ -147,7 +177,7 @@ The consequences are surprisingly useful outside engineering.
 
 GitHub adds a shared remote home for the repository. That makes Git the common substrate across local agents, cloud agents, multiple computers, and automated workflows. The repository is the hub; agents and devices are spokes.
 
-## 9. Define the thing before implementing the thing
+## 10. Define the thing before implementing the thing
 
 Implementation is becoming dramatically cheaper. That makes judgment, taste, and communication more valuable, not less.
 
@@ -163,7 +193,7 @@ The other useful maxim is: creation is hard; editing is easy. It is far easier t
 
 For strategic conversations full of unknowns, preserve optionality. Do not prematurely force confidence into one path. Generate credible alternatives, learn from each, and converge when the decision becomes real.
 
-## 10. A durable software workflow
+## 11. A durable software workflow
 
 For substantial software, the workflow I have converged on is:
 
@@ -180,7 +210,7 @@ Maintaining completely accurate user-facing and developer-facing reference docum
 
 This is why a documentation sweep is part of completing a feature rather than a cleanup chore for later. Flush finished work out of plans, update the reference, check the issues, and reconcile everything against the current state of the world.
 
-## 11. Tests are rails for the agent
+## 12. Tests are rails for the agent
 
 Test-driven development is not mainly about you reading a giant pile of tests. It is about giving the agent a machine-checkable definition of behavior.
 
@@ -190,7 +220,7 @@ Most coverage should live around pure logic: state transformations, parsers, val
 
 A practical commit gate runs fast tests, targeted new tests, type checking, and linting before a change is accepted. Smoke tests run before a push, review, merge, or handoff. The point is not ceremony. The point is that an agent can move extremely quickly, and fast feedback keeps that speed from compounding the wrong result.
 
-## 12. Keep context clean as the project grows
+## 13. Keep context clean as the project grows
 
 Searching and reading a large codebase consumes a lot of the context window. A blunt search can flood the main thread with irrelevant files, and the model may later invent relationships among things it happened to read three turns ago.
 
@@ -204,7 +234,7 @@ I learned this the expensive way when a model proposed a research workflow for a
 
 Start with one agent. Use a second when the tasks are genuinely independent or when isolating context clearly improves the main thread. State the number, purpose, model, and budget before launching a crowd.
 
-## 13. Model choice matters less than workflow - until it matters
+## 14. Model choice matters less than workflow - until it matters
 
 Models have different strengths. Some are better at aesthetics, prose, strategy, or high-level architecture. Others are faster, more token-efficient, or particularly strong at implementation. The rankings change constantly, so do not build your entire working method around this month's leaderboard.
 
@@ -214,7 +244,7 @@ Do not optimize prematurely. Focus first on the practices that improve output qu
 
 Benchmarks are evidence, not scripture. Prefer benchmarks that resemble real work and separate model quality from harness quality. Then run your own repeatable evaluations on tasks you actually care about. I use a visual-programming pattern library as a casual model test because it requires code comprehension, originality, performance judgment, and aesthetic taste. That tells me more about my work than a generic score alone.
 
-## 14. Verification and failure modes
+## 15. Verification and failure modes
 
 Agents are capable and still do dumb things. They may repeat a failing tool call, wander into the weeds, confidently choose the wrong interpretation, or produce something beautiful and structurally false.
 
@@ -232,7 +262,7 @@ One useful high-stakes pattern is to let the model produce the first analysis, i
 
 AI slop is not an unavoidable property of AI output. It is usually the visible result of insufficient judgment and editing. Writing from scratch is difficult; editing is much easier. Generate alternatives, select the good material, remove the generic filler, and verify the facts. The good outcomes are often invisible because they simply look like competent work.
 
-## 15. A first-week curriculum
+## 16. A first-week curriculum
 
 The point of the first week is to form a working habit, not to install every fashionable tool.
 
@@ -248,7 +278,7 @@ Use voice input if possible. During normal work, catch one annoying task before 
 
 ### Day 3: Make the folder the workspace
 
-Choose one ongoing project. Create a folder and a `STATUS.md`. Ask the agent to interview you, summarize the project, and maintain the status file as you work. Begin a project instruction file only if useful preferences emerge.
+Choose one ongoing project. Create a folder and a `STATUS.md`. Ask the agent to interview you, summarize the project, and maintain the status file as you work. Add a short `AGENTS.md` when useful repository-specific preferences emerge; keep current status and project knowledge in the documents that own them.
 
 ### Day 4: Generate options
 
@@ -268,7 +298,7 @@ Review the week's conversations and artifacts. Ask the agent what repeated instr
 
 At the end of the week, the victory is not that you understand every feature. It is that you have one durable project, one useful result, a reviewable history, and a better instinct for what can be delegated.
 
-## 16. July 2026 setup notes
+## 17. July 2026 setup notes
 
 These recommendations are a dated snapshot, not eternal truth. Product interfaces and model rankings are moving too quickly for anything else.
 
