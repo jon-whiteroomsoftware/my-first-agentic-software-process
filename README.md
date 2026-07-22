@@ -133,6 +133,8 @@ Keep the global file reasonably terse. It enters a huge number of conversations,
 
 **Project instructions live inside the repository.** A project's `AGENTS.md` describes what is special about that project: its purpose, domain language, architecture, technology choices, setup commands, issue tracker, documentation layout, local development URL, testing expectations, and any strange hardware or deployment constraints. Because the file is committed, every human and agent working in that repository receives the same guidance.
 
+For a concrete example, here is the [`AGENTS.md` from my PXLBLZ-IDE project](https://github.com/jon-whiteroomsoftware/PXLBLZ-IDE/blob/main/AGENTS.md). It shows how process, architecture, testing, documentation, and tool guidance can accumulate in a substantial repository. Do not copy it wholesale. Use it as an example of what can belong there, then keep only the parts your project actually needs.
+
 Project instructions should explain how to work in the repository, not try to become the entire repository. Current status belongs in `STATUS.md` or issues. Domain concepts belong in a context document. Future decisions belong in plans. Finished behavior belongs in reference documentation. `AGENTS.md` points agents toward those sources and states the rules for using them.
 
 Teach the agent who you are early and in writing, but put each fact at the right level. A stable personal preference belongs globally. The audience, tone, constraints, and working conventions of one business or product belong in its project instructions. Every durable fact written down once is a fact that does not have to be reconstructed from hazy memory later. Agents compound like employees do, but only if you onboard them.
