@@ -275,8 +275,6 @@ What appreciates while implementation depreciates: taste and communication. I've
 
 I think of this as the third wave of technology supercharging the velocity of human knowledge. The text web massively democratized access to expert documents. The video web was the second wave — for so many topics it's vastly more powerful to watch someone do a thing than read about it. An interactive expert you can converse with on literally any topic has to be a bigger multiplier than either. And when I asked one of those experts to challenge the fantasy that we'll all just delegate everything to agent fleets, it gave me the counterpoint I now believe: the bottleneck doesn't disappear, it moves upstream to deciding what to build and what good looks like. You are not a bottleneck that hasn't been automated away yet — you're the quality function. The human in the loop is where the product comes from. The agents are the scaffolding.
 
-But that's just, like, my opinion, man.
-
 ---
 
 ## My current tooling and process (July 2026)
