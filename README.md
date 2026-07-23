@@ -16,7 +16,7 @@ A language model generates text one token at a time. A token is roughly a word f
 
 I think it is really worth having a basic understanding of that generative loop. I doubt you need much technical detail beyond it. Plenty of engineers using these systems will not know much more. You do not need this information to use language models, but keeping it in mind often helps you use them better.
 
-The absurd part is that this works as well as it does. It sounds like a card trick: learn patterns from the co-occurrence of words across trillions of data points, predict one fragment after another, and hey look - a passable replica of human intelligence. The model also represents language in a many-dimensional mathematical space, where related ideas occupy related regions. I tried explaining that once and concluded that it sounds like science fiction, especially while high.
+The absurd part is that this works as well as it does. It sounds like a card trick: learn patterns from the co-occurrence of words across trillions of data points, predict one fragment after another, and hey look - a passable replica of human intelligence. The model also represents language in a many-dimensional mathematical space, where related ideas occupy related regions. I tried explaining that once and concluded that it sounds like science fiction.
 
 The useful consequence is simpler. The model does not retrieve a complete answer from a database. It constructs an answer in response to the material currently in front of it. Better material produces better construction.
 
@@ -132,7 +132,7 @@ Keep the global file reasonably terse. It enters a huge number of conversations,
 
 **Project instructions live inside the repository.** A project's `AGENTS.md` describes what is special about that project: its purpose, domain language, architecture, technology choices, setup commands, issue tracker, documentation layout, local development URL, testing expectations, and any strange hardware or deployment constraints. Because the file is committed, every human and agent working in that repository receives the same guidance.
 
-For a concrete example, here is the [`AGENTS.md` from my PXLBLZ-IDE project](https://github.com/jon-whiteroomsoftware/PXLBLZ-IDE/blob/main/AGENTS.md). It shows how process, architecture, testing, documentation, and tool guidance can accumulate in a substantial repository. Do not copy it wholesale. Use it as an example of what can belong there, then keep only the parts your project actually needs.
+For a concrete example, here is the [AGENTS.md from my PXLBLZ-IDE project](https://github.com/jon-whiteroomsoftware/PXLBLZ-IDE/blob/main/AGENTS.md). It shows how process, architecture, testing, documentation, and tool guidance can accumulate in a substantial repository. Do not copy it wholesale. Use it as an example of what can belong there, then keep only the parts your project actually needs.
 
 Project instructions should explain how to work in the repository, not try to become the entire repository. Current work belongs in issues. Domain concepts belong in a context document. Future decisions belong in plans. Finished behavior belongs in reference documentation. `AGENTS.md` points agents toward those sources and states the rules for using them.
 
