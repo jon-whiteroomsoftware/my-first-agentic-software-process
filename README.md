@@ -2,7 +2,7 @@
 
 *A compact guide to building reliable software with agents*
 
-*By Jon Chester | Last updated July 21st, 2026*
+*By Jon Chester | Last updated October 20th, 2026*
 
 This is a guide to working with language models and coding agents, but it is not really a guide to writing code. The important shift is learning to give a capable agent context, judgment, and a definition of done; to preserve the useful state outside any one conversation; and to review the result at the level where your own expertise matters.
 
@@ -112,8 +112,8 @@ A minimal project folder might contain:
 project-name/
   README.md        # What this is and how to begin
   AGENTS.md        # How agents should work in this project
+  CONTEXT.md       # Domain language and shared mental model
   docs/
-    context.md     # Domain language and shared mental model
     plans/         # Future work and decisions still being made
     reference/     # How the current, finished system works
 ```
@@ -124,7 +124,7 @@ Do not create this entire structure because a guide told you to. Start with the 
 
 Agent instruction files are durable context that the harness loads automatically. They save you from repeating how you want the agent to work, but they come in two different scopes that should not be muddled together.
 
-**Global instructions follow you from project to project.** My Codex defaults live at `~/.codex/AGENTS.md`, outside any Git repository. That file contains the stable preferences I want applied nearly everywhere: where repositories live, how files are named, when agents need permission, how subagents and token budgets should be handled, how Git operations should be approached, and practical details such as where to look when I mention a screenshot.
+**Global instructions follow you from project to project.** My defaults live at `~/.agents/AGENTS.md`, outside any Git repository and outside either tool's own settings folder, so Codex and Claude read the same file. That file contains the stable preferences I want applied nearly everywhere: where repositories live, how files are named, when agents need permission, how subagents and token budgets should be handled, how Git operations should be approached, and practical details such as where to look when I mention a screenshot.
 
 Global instructions are also a good home for broad product and engineering process defaults. Mine describes preferences such as test-driven development, small vertical slices, keeping framework code separate from business logic, and maintaining current reference documentation. Those are not facts about one product; they are the way I generally want to work.
 
@@ -132,7 +132,7 @@ Keep the global file reasonably terse. It enters a huge number of conversations,
 
 **Project instructions live inside the repository.** A project's `AGENTS.md` describes what is special about that project: its purpose, domain language, architecture, technology choices, setup commands, issue tracker, documentation layout, local development URL, testing expectations, and any strange hardware or deployment constraints. Because the file is committed, every human and agent working in that repository receives the same guidance.
 
-For a concrete example, here is the [AGENTS.md from my PXLBLZ-IDE project](https://github.com/jon-whiteroomsoftware/PXLBLZ-IDE/blob/main/AGENTS.md). It shows how process, architecture, testing, documentation, and tool guidance can accumulate in a substantial repository. Do not copy it wholesale. Use it as an example of what can belong there, then keep only the parts your project actually needs.
+For a concrete example, here is the [AGENTS.md from my PXLBLZ-IDE project](https://github.com/jon-whiteroomsoftware/PXLBLZ-IDE/blob/4c945138320747fafc99ca00b1b056d96d7cf3ef/AGENTS.md) as it stood in July 2026. It shows how process, architecture, testing, documentation, and tool guidance can accumulate in a substantial repository. Do not copy it wholesale. Use it as an example of what can belong there, then keep only the parts your project actually needs.
 
 Project instructions should explain how to work in the repository, not try to become the entire repository. Current work belongs in issues. Domain concepts belong in a context document. Future decisions belong in plans. Finished behavior belongs in reference documentation. `AGENTS.md` points agents toward those sources and states the rules for using them.
 
@@ -186,7 +186,7 @@ An amateur with strong tools can now get surprisingly close to an expert in many
 
 The big trap is using the increased implementation speed to build the wrong thing faster.
 
-Shake out the load-bearing decisions early. Have long conversations. Ask the agent to interview you. Build a prototype. Request several approaches and compare them. The core data model, vocabulary, and boundaries should become clear before a large amount of code hardens around them.
+Shake out the foundational decisions early. Have long conversations. Ask the agent to interview you. Build a prototype. Request several approaches and compare them. The core data model, vocabulary, and boundaries should become clear before a large amount of code hardens around them.
 
 I use the house-hunting analogy. The first couple of houses are difficult to judge because you do not yet know what good value looks like. The solution is to look at more houses. By house 30, you know which features are essential, which are cosmetic, and where the trade-offs live. Turning over more rocks brings you closer to the thing you actually want to build.
 
@@ -198,7 +198,7 @@ For strategic conversations full of unknowns, preserve optionality. Do not prema
 
 If you don't already have a basic process, my standard recommendation is [Matt Pocock's skills](https://github.com/mattpocock/skills):
 
-- **Product definition:** `/grill_me`, `/to_prd`, and `/to_issues` get a lot of use. They still do.
+- **Product definition:** `/grill_me`, `/to_prd`, and `/to_issues`.
 - **Development:** `/tdd` and `/improve-codebase-architecture`.
 
 For substantial software, the workflow I have converged on is:
@@ -236,7 +236,7 @@ The general optimization is to move discovery outside the main reasoning thread.
 
 Subagents are useful for the same reason. Parallelism is only one application. The other is context isolation: send token-intensive research, code discovery, or mechanical extraction to a bounded worker and bring back a compact answer.
 
-Do not jump into elaborate multi-agent orchestration because it sounds advanced. I usually get transformative output from one active implementation agent, sometimes paired with one planning or domain agent. More agents introduce coordination cost, collision risk, subscription usage, and more places for judgment to go missing.
+Do not jump into elaborate multi-agent orchestration because it sounds advanced. One active implementation agent, sometimes paired with one planning or domain agent, gets you transformative output for a long time. More agents introduce coordination cost, collision risk, subscription usage, and more places for judgment to go missing.
 
 I learned this the expensive way when a model proposed a research workflow for a task that should have taken one agent ten minutes. I approved it, got coffee, and returned to find that it had spawned 100 agents, burned two million tokens, exhausted the subscription, and failed to finish. Advanced is not the same as intelligent.
 
@@ -270,7 +270,7 @@ One useful high-stakes pattern is to let the model produce the first analysis, i
 
 AI slop is not an unavoidable property of AI output. It is usually the visible result of insufficient judgment and editing. Writing from scratch is difficult; editing is much easier. Generate alternatives, select the good material, remove the generic filler, and verify the facts. The good outcomes are often invisible because they simply look like competent work.
 
-## 16. July 2026 setup notes
+## 16. October 2026 setup notes
 
 These recommendations are a dated snapshot, not eternal truth. Product interfaces and model rankings are moving too quickly for anything else.
 
@@ -281,6 +281,34 @@ These recommendations are a dated snapshot, not eternal truth. Product interface
 - Prefer steering over silently queueing new guidance when you notice the agent moving in the wrong direction. Interrupt immediately when necessary.
 - Add specialized search, multiple agents, cloud execution, scheduled work, and remote development only as actual needs appear.
 
+## 17. Where I went after that
+
+Nobody has years of experience with this. When I reread the July version of this guide, I was surprised how much of my own process had changed in three months. None of what follows is necessary for a first project. Each piece arrived because I hit the problem it solves, almost always by running more agents for longer without watching them.
+
+**Subscriptions.** Still $200 a month each for OpenAI and Anthropic. For a while I also used Muse Spark 1.3 on OpenRouter's free tier. I dropped my $60-a-month code-search subscription once small, cheap "locator" agents could answer "where is X?" with a handful of file and line references.
+
+**Models by role, not by name.** Work goes out by role: locator, junior, developer, lead. Each role maps to a model and reasoning effort from both vendors, kept in one configuration file. When a new model ships, I edit that file and nothing else changes. As of October, developer work runs on GPT-6.1 Sol or Claude Opus 5.5 at medium effort, and locators run on Claude Haiku 5.5 or GPT-6 Luna.
+
+**A small org chart instead of one agent.** The planner-plus-implementer pair grew into roles. For each project, a supervisor session runs a few parallel lanes of work, and each lane has a coordinator I talk with directly. The coordinator owns the decisions: it reads the spec and the code, chooses the approach, writes a self-contained brief, hands it to a worker, checks what comes back, and merges it. Workers carry out one brief each in their own Git worktree and make no design decisions. Researchers answer factual questions with citations. A lane runs at most two workers and two researchers at once. Coordinators never write the code themselves, which keeps their context full of judgment instead of terminal output.
+
+**Review by the other model family, tied to exact commits.** Every change is reviewed by a model from the other vendor. The approval records exactly which commits it covers, so any later change needs a fresh review. Pushing to GitHub requires that approval plus passing tests on the exact commit being pushed, and only the supervisor is allowed to push.
+
+**Gates instead of advice.** Rules that kept getting broken became hooks the agents cannot ignore. Commits cannot skip their checks, workers cannot push or edit their own instructions, and helper agents launch only through a script that checks the model and effort against the role.
+
+**Done means proof.** An agent may call something finished only with evidence at the surface I would look at: the running page, the exported file, a screenshot. A green test suite alone does not count. "Blocked" is an acceptable answer; a weaker check quietly substituted for the real one is not.
+
+**A dedicated machine.** Agents run on an always-on Mac mini rather than my laptop. I steer them from the laptop or my phone through remote-control sessions.
+
+**The process is software too.** The skills, hooks, and review tooling live in their own repository, with tests and releases, deployed to every agent on the machine. It also records token usage per issue, so I can see what a feature actually cost.
+
+A few principles survived all of that scaling and would have helped me on day one:
+
+- Humans own intent and acceptance. Machines own scheduling and verification.
+- Unattended time is cheap. Tokens and my attention are not.
+- Issues hold the state of the work, repositories hold knowledge, and conversations hold nothing durable.
+
+Is any of this necessary for you? Probably not yet. Every piece answers a problem that one agent and a project folder let you avoid for a long time.
+
 The systems will keep changing. The durable skill is not remembering which button exists this month. It is learning to provide context, externalize state, specify outcomes, preserve decisions, and apply judgment to what comes back.
 
 ## Further resources
@@ -290,5 +318,4 @@ The systems will keep changing. The durable skill is not remembering which butto
 - [Matt Pocock's agent skills](https://github.com/mattpocock/skills)
 - [Anthropic's frontend design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
 - [DeepSWE coding-agent benchmark](https://deepswe.datacurve.ai/)
-- [Morph WarpGrep](https://www.morphllm.com/products/warpgrep)
 - [Thursd.ai](https://podcasts.apple.com/us/podcast/thursdai-the-top-ai-news-from-the-past-week/id1698613329)
